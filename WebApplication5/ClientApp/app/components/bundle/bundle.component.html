@@ -1,0 +1,162 @@
+
+<h1>Bundles</h1>
+
+<a href="#new_item" data-backdrop="false" data-toggle="modal">New Bundle</a>
+
+<p *ngIf="!items"><em>Loading...</em></p>
+
+<table class='table' *ngIf="items">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Info</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of items">
+            <td>{{ item.id }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.image }}</td>
+            <td>{{ item.info }}</td>
+            <td>
+                <a (click)="edit_item(item);" href="#edit_item" data-backdrop="false" data-toggle="modal">Edit</a> | <a (click)="delete = item; delete_item('custom-modal-2')">Delete</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div id="edit_item" class="modal centered-modal">
+    <div class="modal-dialog" style="width: 200px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Edit Bundle</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Name<br />
+                    <input type="text" [(ngModel)]="edit.name" /><br />
+                    Image<br />
+                    <input type="text" [(ngModel)]="edit.image" /><br />
+                    Info<br />
+                    <input type="text" [(ngModel)]="edit.info" /><br />
+                </p>
+                <a href="#bundle_paths" data-backdrop="false" data-toggle="modal">Paths</a>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button id="loadpage" type="button" class="btn btn-primary" (click)="save_edit_item('custom-modal-2');" data-dismiss="modal">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="new_item" class="modal centered-modal">
+    <div class="modal-dialog" style="width: 200px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">New Bundle</h4>
+
+            </div>
+            <div class="modal-body">
+                <p>
+                    Name<br />
+                    <input type="text" [(ngModel)]="new.name" /><br />
+                    Image<br />
+                    <input type="text" [(ngModel)]="new.image" /><br />
+                    Info<br />
+                    <input type="text" [(ngModel)]="new.info" /><br />
+                </p>
+                <a href="#myModal" data-backdrop="false" data-toggle="modal">Paths</a>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button id="loadpage" type="button" class="btn btn-primary" (click)="save_new_item('custom-modal-2');" data-dismiss="modal">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="bundle_paths" class="modal centered-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Bundle Paths</h4>
+            </div>
+            <div class="modal-body">
+                <a href="#paths" data-backdrop="false" data-toggle="modal">Add Path</a><br />
+
+                <table class='table' *ngIf="edit.bundlePaths">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Image</th>
+                            <th>Info</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of edit.bundlePaths">
+                            <td>{{ item.path.id }}</td>
+                            <td>{{ item.path.name }}</td>
+                            <td>{{ item.path.image }}</td>
+                            <td>{{ item.path.info }}</td>
+                            <td>
+                                <a (click)="delete_path(item)">Delete</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button (click)="save_bundle_paths" id="loadpage" type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="paths" class="modal centered-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Paths</h4>
+            </div>
+            <div class="modal-body">
+                <table class='table' *ngIf="paths">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Image</th>
+                            <th>Info</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of paths">
+                            <td>{{ item.id }}</td>
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.image }}</td>
+                            <td>{{ item.info }}</td>
+                            <td>
+                                <a (click)="add_path(item)" data-dismiss="modal">Add</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button id="loadpage" type="button" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

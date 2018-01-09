@@ -1,0 +1,86 @@
+
+<h1>Places</h1>
+
+<a href="#new_item" data-backdrop="false" data-toggle="modal">New Place</a>
+
+<p *ngIf="!items"><em>Loading...</em></p>
+
+<table class='table' *ngIf="items">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Info</th>
+            <th>Image</th>
+            <th>Radius</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of items">
+            <td>{{ item.id }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.info }}</td>
+            <td>{{ item.image }}</td>
+            <td>{{ item.radius }}</td>
+            <td>
+                <a (click)="edit_item(item);" href="#edit_item" data-backdrop="false" data-toggle="modal">Edit</a> | <a (click)="delete = item; delete_item('custom-modal-2')">Delete</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div id="new_item" class="modal centered-modal">
+    <div class="modal-dialog" style="width: 200px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">New Place</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Name<br />
+                    <input type="text" [(ngModel)]="new.name" /><br />
+                    Info<br />
+                    <input type="text" [(ngModel)]="new.info" /><br />
+                    Image<br />
+                    <input type="text" [(ngModel)]="new.image" /><br />
+                    Radius<br />
+                    <input type="text" [(ngModel)]="new.radius" /><br />
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button id="loadpage" type="button" class="btn btn-primary" (click)="save_new_item('custom-modal-2');" data-dismiss="modal">Save</button>
+            </div>
+        </div>
+        <div class="modal-background"></div>
+    </div>
+</div>
+
+<div id="edit_item" class="modal centered-modal">
+    <div class="modal-dialog" style="width: 200px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Edit Place</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Name<br />
+                    <input type="text" [(ngModel)]="edit.name" /><br />
+                    Info<br />
+                    <input type="text" [(ngModel)]="edit.info" /><br />
+                    Image<br />
+                    <input type="text" [(ngModel)]="edit.image" /><br />
+                    Radius<br />
+                    <input type="text" [(ngModel)]="edit.radius" /><br />
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button id="loadpage" type="button" class="btn btn-primary" (click)="save_edit_item('custom-modal-2');" data-dismiss="modal">Save</button>
+            </div>
+        </div>
+        <div class="modal-background"></div>
+    </div>
+</div>
